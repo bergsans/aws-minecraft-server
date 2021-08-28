@@ -1,0 +1,7 @@
+ID=$(docker ps | grep 25565 | awk '{print $1}')
+
+echo "
+VISIT COUNT
+==========="
+
+docker logs $ID | grep "joined the game" | cut -c 34- | sort -nr | uniq -c | awk '{print $2 " has visited " $1 " times"}'
